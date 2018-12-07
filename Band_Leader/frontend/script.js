@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     userArr.forEach(userData => {
       let li = document.createElement('li');
       li.innerText = `${userData[0]}, ${userData[1]}`;
+      li.style.background = "lightblue";
+      li.style.border = "1px solid white"
       userList.appendChild(li);
     })
     div.appendChild(userList);
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let nameOnly = event.target.innerText.split(",")[0];
       let clickedId = findMusician(data, nameOnly)[0][2];
       fireRequest(`http://localhost:3000/picture/user/${clickedId}`, displayPics)
-      // fireRequest(`http://localhost:3000/picture/user/${clickedId}`, displayPosts)
+      fireRequest(`http://localhost:3000/post/user/${clickedId}`, displayPosts)
     })
   }
 
@@ -58,7 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
     div.innerHTML = "";
     let img = document.createElement('img');
     img.src = data.url;
+    img.style.width = "300px"
     div.appendChild(img);
+  }
+
+  function displayPosts(data) {
+    let div = document.querySelector('.user-posts');
+    div.innerHTML = "";
+    let post = document.createElement('p');
+    post.innerText = data.body;
+    div.appendChild(post);
   }
 
   fireRequest("http://localhost:3000/user", displayMusicians)
