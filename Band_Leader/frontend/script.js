@@ -20,14 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayMusicians(data) {
     let userArr = data.users.map(userObj => [userObj.name, userObj.instrument]);
     let userList = document.createElement('ul');
-    userList.style.width = "200px"
     let div = document.querySelector('.data');
     userArr.sort();
     userArr.forEach(userData => {
       let li = document.createElement('li');
       li.innerText = `${userData[0]}, ${userData[1]}`;
-      li.style.background = "lightblue";
-      li.style.border = "1px solid white"
       userList.appendChild(li);
     })
     div.appendChild(userList);
@@ -41,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function findMusician(data, input) {
-
       let userArr = data.users.map(userObj => [userObj.name, userObj.instrument, userObj.id]);
       let userItem = document.createElement('ul');
       let div = document.querySelector('.find-display');
@@ -54,9 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return (userData[0] === input)
       })
       let li = document.createElement('li');
-
       li.innerText = (found.length ? `${found[0][0]}, ${found[0][1]}`:`${input} not found. eek`)
-
       userItem.appendChild(li);
       div.appendChild(userItem);
       return found;
@@ -67,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     div.innerHTML = "";
     let img = document.createElement('img');
     img.src = data.url;
-    img.style.width = "300px"
     div.appendChild(img);
   }
 
@@ -86,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     data.pictures.forEach(imgObj => {
       let img = document.createElement('img');
       img.src = imgObj.url;
-      img.style.width = "150px";
       div.appendChild(img);
     })
 
