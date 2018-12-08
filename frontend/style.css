@@ -1,0 +1,56 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 33.33%;
+}
+
+
+#users {background-color: red;}
+#photos {background-color: green;}
+#posts {background-color: blue;}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+#setHtWt {
+  height: 45%;
+  height: auto;
+}
+
+img {
+  padding: 5px;
+  width: 40%;
+}
+
+#photos-list {
+  display: flex;
+  flex-wrap: wrap;
+  float:left;
+  margin: 0px;
+  padding: 0px;
+}
+
+#search {
+  width: 30%;
+  height: 25px;
+}
