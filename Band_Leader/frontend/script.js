@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   let form = document.querySelector('.find')
-  let data;
+  let dataUsers = {};
 
   async function fireRequest(url, cb) {
     try {
       let resp = await axios.get(url);
-      data = resp.data
+      if (resp.data.users) {
+        dataUsers = resp.data;
+      }
+
       cb(resp.data);
     }
     catch(err) {
@@ -38,11 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function findMusician(data, input) {
+
       let userArr = data.users.map(userObj => [userObj.name, userObj.instrument, userObj.id]);
       let userItem = document.createElement('ul');
       let div = document.querySelector('.find-display');
+      let divPost = document.querySelector('.user-posts')
+      let divImg = document.querySelector('.user-imgs')
       div.innerHTML = "";
-
+      divPost.innerHTML = "";
+      divImg.innerHTML = "";
       let found = userArr.filter(userData => {
         return (userData[0] === input)
       })
@@ -72,13 +79,28 @@ document.addEventListener('DOMContentLoaded', () => {
     div.appendChild(post);
   }
 
+  function displayAllPhotos(data) {
+    let div = document.querySelector('.all-imgs');
+    div.innerHTML = "";
+
+    data.pictures.forEach(imgObj => {
+      let img = document.createElement('img');
+      img.src = imgObj.url;
+      img.style.width = "150px";
+      div.appendChild(img);
+    })
+
+  }
+
   fireRequest("http://localhost:3000/user", displayMusicians)
+  fireRequest("http://localhost:3000/picture", displayAllPhotos)
 
   form.addEventListener('change', (event) => {
     event.preventDefault();
-    findMusician(data, event.target.value)
+    findMusician(dataUsers, event.target.value)
     form.reset();
   })
+  ;
 
 })
 
