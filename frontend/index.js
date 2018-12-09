@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let allUsersDiv = document.querySelector('.allUsersDiv');
   let allUsersUl = document.querySelector('.allUsersUl');
   let allPhotosUl = document.querySelector('.allPhotosUl');
+  let singleUserUl = document.querySelector('.singleUserUl');
   let submit = document.querySelector('#submit');
   let findUserUl = document.querySelector('.findUserUl');
   let input = document.querySelector('#input');
@@ -21,49 +22,77 @@ document.addEventListener('DOMContentLoaded', () => {
   .all([usersPromise, picturesPromise, postsPromise])
   .then(arrObjValues => {
     [users, pictures, posts] = arrObjValues;
-    setAllUsers(users.data);
-    allPhotos(pictures.data);
-
+    displayAllUsers(users.data);
+    displayAllPhotos(pictures.data);
+    getSingleUserDetails(posts.data, pictures.data);
   })
+  .catch(error => {
+    console.log('promise error: ', error);
+  })
+
+  function displayAllUsers(arrObj) {
+    arrObj.forEach( personObj => {
+      personLi(allUsersUl, personObj);
+    });
+  }
 
   submit.addEventListener('click', (event) => {
     event.preventDefault();
-    findUser(users.data);
+    displayFindUser(users.data);
     form.reset();
   })
 
-  // allInfoArray = arrObjValues.map(route => route.data);
-  // return allInfoArray;
-  // .then(res => {
-  //   // console.log(Array.isArray(res));
-  //   setAllUsers(res[0]);
-  //   allPhotos(res[1]);
-  //
-  // })
-  // console.log(allInfoArray)
+  function displayFindUser(arrObj) {
+    while (findUserUl.firstChild) {
+      findUserUl.removeChild(findUserUl.firstChild);
+    };
+    let foundPersonObj = arrObj.find(personObj => {
+      let namesStringRegular = personObj.name;
+      let namesLowerCase = (namesStringRegular).toLowerCase();
+      return (namesStringRegular === input.value) || (namesStringRegular.includes(input.value)) || (namesLowerCase === input.value) || (namesLowerCase.includes(input.value))
+    });
 
-  // axios
-  // .get('http://localhost:3000/user')
-  // .then(users => {
-  //   setAllUsers(users.data);
-  //   submit.addEventListener('click', (event) => {
-  //     event.preventDefault();
-  //     findUser(users.data);
-  //     form.reset();
-  //   })
-  // })
+    if (typeof foundPersonObj === 'object') {
+      personLi(findUserUl, foundPersonObj);
+    } else {
+      foundPersonObj = {Error : 'Please select a valid user!'};
+      personLi(findUserUl, foundPersonObj);
+    }
+  }
 
-  // axios
-  // .get('http://localhost:3000/picture')
-  // .then(pictures => {
-  //   allPhotos(pictures.data);
-  // })
+  function getSingleUserDetails(postsArrObj, picsArrObj) {
+    allUsersUl.addEventListener('click', event => {
+      let selectedUserId = +event.target.id;
 
-  // function singleUser() {
-  //
-  // }
+      let foundPersonPost = postsArrObj.find(personObj => {
+        return selectedUserId === personObj.userId;
+      });
 
-  function allPhotos(arrObj) {
+      let foundPersonPicture = picsArrObj.find(personObj => {
+        return selectedUserId === personObj.userId
+      });
+
+      displaySingleUser(foundPersonPost, foundPersonPicture);
+    });
+  }
+
+  function displaySingleUser(personPostObj, personPicObj) {
+    while(singleUserUl.firstChild) {
+      singleUserUl.removeChild(singleUserUl.firstChild)
+    };
+
+    let li = document.createElement('li');
+    let newDivPost = document.createElement('div');
+    newDivPost.innerText = personPostObj.body;
+    let newImgPic = document.createElement('img');
+    newImgPic.src = personPicObj.url;
+    li.append(newDivPost);
+    li.append(newImgPic);
+    singleUserUl.append(li);
+
+  }
+
+  function displayAllPhotos(arrObj) {
     arrObj.forEach( pictureObj => {
       let li = document.createElement('li');
       let divPicture = document.createElement('img');
@@ -73,52 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  function findUser(arrObj) {
-    while (findUserUl.firstChild) {
-    findUserUl.removeChild(findUserUl.firstChild);
+  function personLi(correspondingUl, searchedPersonObject1) {
+    if (searchedPersonObject1.hasOwnProperty('Error')) {
+      let li = document.createElement('li');
+      li.innerText = searchedPersonObject1.Error;
+      correspondingUl.append(li);
+    } else {
+      let li = document.createElement('li');
+      li.append(createDiv('name', searchedPersonObject1));
+      li.append(createDiv('age', searchedPersonObject1));
+      correspondingUl.append(li);
     }
-
-    let foundPerson = arrObj.find(personObj => {
-      let namesStringRegular = personObj.name;
-      let namesLowerCase = (namesStringRegular).toLowerCase();
-      return (namesStringRegular === input.value) || (namesStringRegular.includes(input.value)) || (namesLowerCase === input.value) || (namesLowerCase.includes(input.value))
-    });
-
-    let li = document.createElement('li');
-    let divId = document.createElement('div');
-    let divAge = document.createElement('div');
-    let divName = document.createElement('div');
-    divId.classList.add('id');
-    divAge.classList.add('age');
-    divName.classList.add('name');
-    divId.innerText = `ID: ${foundPerson.id}`;
-    divAge.innerText = `Age: ${foundPerson.age}`;
-    divName.innerText = `Name: ${foundPerson.name}`;
-    // li.append(divId);
-    li.append(divName);
-    li.append(divAge);
-    findUserUl.append(li);
   }
 
-  function setAllUsers(arrObj) {
-    arrObj.forEach( personObj => {
-      // console.log(personObj);
-      // console.log(Array.isArray(personObj));
-      let li = document.createElement('li');
-      let divId = document.createElement('div');
-      let divAge = document.createElement('div');
-      let divName = document.createElement('div');
-      divId.classList.add('id');
-      divAge.classList.add('age');
-      divName.classList.add('name');
-      divId.innerText = `ID: ${personObj.id}`;
-      divAge.innerText = `Age: ${personObj.age}`;
-      divName.innerText = `Name: ${personObj.name}`;
-      // li.append(divId);
-      li.append(divName);
-      li.append(divAge);
-      allUsersUl.append(li);
-    })
+  function createDiv(infoTitle, searchedPersonObject1) {
+    let newDiv = document.createElement('div');
+    newDiv.innerText = `${infoTitle[0].toUpperCase() + infoTitle.slice(1)}: ${searchedPersonObject1[infoTitle]}`;
+    newDiv.classList.add(infoTitle);
+    newDiv.setAttribute('id', searchedPersonObject1.id);
+    return newDiv;
   }
 
 });
