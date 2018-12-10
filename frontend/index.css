@@ -1,0 +1,170 @@
+h1 {
+  font-size: 20px;
+  font-family: serif;
+  font-weight: lighter;
+  color: black;
+  opacity: 0;
+
+}
+h1:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+body {
+  font-size: 16px;
+  background: linear-gradient(to right, #e1eec3, #f05053);
+  width: 1400px;
+  margin: auto;
+}
+
+.allPhotosUl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 1400px;
+  margin: auto;
+
+}
+
+ul {
+  padding: 0px;
+}
+
+li>.name {
+  color: lightyellow;
+  /* transform: rotate(0.9turn); */
+}
+
+.allPhotosUl>li {
+  background-color: white;
+  margin-bottom: 30px;
+  opacity: .8;
+}
+
+
+li {
+  list-style-type: none;
+}
+
+li:hover {
+  opacity: 1;
+  transition: .5s;
+
+}
+
+img {
+  height: 332px;
+  width: 500px;
+  padding: 60px;
+  margin: 5px;
+  border: 8px solid black;
+  background: white;
+}
+
+.singleUserUl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 1000px;
+  margin: auto;
+  padding: 20px;
+  opacity: 1;
+}
+
+.singleUserUl>li {
+  border: 8px double black;
+  color: black;
+  font-family: cursive;
+  font-size: 24px;
+  margin: auto;
+}
+
+.singleUserLi {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.personBodyInfo {
+  padding: 15px 30px;
+}
+
+.allUsersUl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 1000px;
+  margin: auto;
+  background-color: black;
+  padding: 20px;
+  border: 8px double white;
+  opacity: 1;
+}
+
+.allUsersUl>li {
+  font-family: fantasy;
+  font-weight: bold;
+  color: white;
+
+}
+
+.allUsersUl:hover {
+
+  background-color: black;
+  transition: .75s;
+  opacity: .8;
+  cursor: pointer;
+}
+
+#submit {
+	box-shadow:inset 0px 1px 0px 0px #f9eca0;
+	background:linear-gradient(to bottom, #f0c911 5%, #f2ab1e 100%);
+	background-color:#f0c911;
+	border-radius:6px;
+	border:1px solid #e65f44;
+	display:inline-block;
+	cursor:pointer;
+	color:#c92200;
+	font-family:Verdana;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ded17c;
+}
+
+#submit:hover {
+	background:linear-gradient(to bottom, #f2ab1e 5%, #f0c911 100%);
+	background-color:#f2ab1e;
+}
+#submit:active {
+	position:relative;
+	top:2px;
+}
+
+#input {
+  width: 400px;
+  height: 22px;
+  font-size: 15px;
+}
+
+.form {
+  width: 600px;
+  margin: auto;
+}
+
+::placeholder {
+  color: red;
+  opacity: .75;
+}
+
+.findUserUl {
+  width: 400px;
+  margin: auto;
+  padding: 50px 0px 0px 0px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: serif;
+  font-stretch: ultra-expanded;
+}
