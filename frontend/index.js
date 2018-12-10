@@ -82,9 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let li = document.createElement('li');
+    li.classList.add('singleUserLi');
     let newDivPost = document.createElement('div');
+    newDivPost.classList.add('personBodyInfo');
     newDivPost.innerText = personPostObj.body;
     let newImgPic = document.createElement('img');
+    newImgPic.classList.add('personBodyImg');
     newImgPic.src = personPicObj.url;
     li.append(newDivPost);
     li.append(newImgPic);
