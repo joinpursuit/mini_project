@@ -5,7 +5,7 @@ body, html {
 }
 
 .tabcontent {
-    color: white;
+    color: black;
     display: none;
     padding: 100px 20px;
     height: 100%;
@@ -23,10 +23,10 @@ body, html {
     width: 33.33%;
 }
 
-
+/*
 #users {background-color: red;}
 #photos {background-color: green;}
-#posts {background-color: blue;}
+#posts {background-color: blue;} */
 
 .tablink:hover {
     background-color: #777;
@@ -53,4 +53,17 @@ img {
 #search {
   width: 30%;
   height: 25px;
+}
+
+#users-list {
+  width: 50%;
+}
+
+#singleUser {
+  width: 100%;
+}
+
+.display {
+  display: flex;
+  justify-content: space-around;
 }

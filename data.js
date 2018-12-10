@@ -1,14 +1,54 @@
 let users = [
-  { id: 1, name: "Gregor Samsa", age: 54 },
-  { id: 2, name: "Bobbie Tillman", age: 23 },
-  { id: 3, name: "Tabitha Ealhstan", age: 34 },
-  { id: 4, name: "Kamal Ante", age: 46 },
-  { id: 5, name: "Keenan Kristian", age: 19 },
-  { id: 6, name: "Lynne Meztli", age: 44 },
-  { id: 7, name: "Amrita Gabriela", age: 62 },
-  { id: 8, name: "Daniel Elke", age: 78 },
-  { id: 9, name: "Roberta Alba", age: 27 },
-  { id: 10, name: "Julia Layla", age: 55 }
+  {
+    id: 1,
+    name: "Gregor Samsa",
+    age: 54
+  },
+  {
+    id: 2,
+    name: "Bobbie Tillman",
+    age: 23
+  },
+  {
+    id: 3,
+    name: "Tabitha Ealhstan",
+    age: 34
+  },
+  {
+    id: 4,
+    name: "Kamal Ante",
+    age: 46
+  },
+  {
+    id: 5,
+    name: "Keenan Kristian",
+    age: 19
+  },
+  {
+    id: 6,
+    name: "Lynne Meztli",
+    age: 44
+  },
+  {
+    id: 7,
+    name: "Amrita Gabriela",
+    age: 62
+  },
+  {
+    id: 8,
+    name: "Daniel Elke",
+    age: 78
+  },
+  {
+    id: 9,
+    name: "Roberta Alba",
+    age: 27
+  },
+  {
+    id: 10,
+    name: "Julia Layla",
+    age: 55
+  }
 ];
 
 let posts = [
@@ -66,7 +106,11 @@ let posts = [
     body:
       "A/B testing hypotheses ecosystem entrepreneur conversion interaction design. Seed money funding pitch."
   },
-  { id: 10, userId: 7, body: "Disruptive value proposition metrics." }
+  {
+    id: 10,
+    userId: 7,
+    body: "Disruptive value proposition metrics."
+  }
 ];
 
 let pictures = [
@@ -136,4 +180,4 @@ module.exports = {
   users,
   posts,
   pictures
-}
+};
