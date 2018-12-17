@@ -36,12 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
       usersDiv.appendChild(br);
     }) // end of forEach.
 
+//-----------------------------
+
     let searchInputDiv = document.createElement('div');
     searchInputDiv.classList.add('searchInputDiv');
     body.appendChild(searchInputDiv);
 
     let searchInput = document.createElement('input');
-    searchInput.classList.add('search');
+    searchInput.classList.add('searchInput');
+    searchInputDiv.appendChild(searchInput);
+
+    let searchButton = document.createElement('button');
+    searchButton.classList.add('searchButton');
+    searchButton.innerText = "Find User";
+    searchInputDiv.appendChild(searchButton)
 
 
 
