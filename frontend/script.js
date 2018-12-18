@@ -114,10 +114,15 @@ document.addEventListener('DOMContentLoaded', () => {
         userInfoDiv = document.createElement('div');
         userInfoDiv.classList.add('userInfoDiv');
         userInfoDiv.innerText = userInfo;
-        searchResultDiv.appendChild(userInfoDiv);
+        // searchResultDiv.appendChild(userInfoDiv);
+      } else if (user.name.toLowerCase() != searchInput.value.toLowerCase()){
+        userInfoDiv = document.createElement('div');
+        userInfoDiv.classList.add('userInfoDiv');
+        userInfoDiv.innerText = `The user ${searchInput.value} does not exist.`
+        // searchResultDiv.appendChild(userInfoDiv)
       }
     })
-
+    searchResultDiv.appendChild(userInfoDiv);
     // console.log('here',userInfo);
   }
 
