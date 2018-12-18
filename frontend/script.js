@@ -1,7 +1,8 @@
 // console.log('hello');
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('hello');
+  let newButton;
+  // console.log('hello');
 
   let body = document.querySelector('body')
 
@@ -10,12 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return res.json();
   }).then(parsed => {
 
+    appendListOfUsers(parsed)
+    appendSearchBox(parsed)
+
+  }) // end of parsed.
 
 
+  function appendListOfUsers(parsed) {
     // let usersDivBackground = document.createElement('div');
     // usersDivBackground.classList.add('usersDivBackground')
     // body.appendChild(usersDivBackground);
-
 
     let usersDiv = document.createElement('div');
     usersDiv.classList.add('usersDiv')
@@ -27,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     parsed.listOfUsers.forEach(user => {
-      let newButton = document.createElement('button');
+      newButton = document.createElement('button');
       let br = document.createElement('br')
       newButton.innerText = user.name;
       newButton.classList.add('userNameButton')
@@ -36,8 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
       usersDiv.appendChild(br);
     }) // end of forEach.
 
-//-----------------------------
+  } //end of function
 
+
+  function appendSearchBox(parsed ) {
     let searchInputDiv = document.createElement('div');
     searchInputDiv.classList.add('searchInputDiv');
     body.appendChild(searchInputDiv);
@@ -51,8 +58,42 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.innerText = "Find User";
     searchInputDiv.appendChild(searchButton)
 
+    findUserBySearchInput(parsed, searchInput, searchButton, searchInputDiv);
+    onClickSearch(searchInput, searchButton, searchInputDiv);
+  }//end of function
+
+  function findUserBySearchInput(parsed, searchInput, searchButton, searchInputDiv) {
+    searchButton.addEventListener('click', () => {
+    let display;
+      parsed.listOfUsers.find(user => {
+        display = user.name.toLowerCase();
+        if (display === searchInput.value.toLowerCase()) {
+          console.log(true);
+        } else {
+          console.log(user.name, searchInput.value);
+        }
+
+      // ) {
+      //     display = searchInput.value + user.name + searchInput.value
+      //   } else {
+      //     display = searchInput.value + user.name
+      //   }
+        // console.log(user.name);
+      })
+        // console.log(display);
+
+    })
+
+  }//end of function
 
 
-  }) // end of parsed.
+
+
+
+  function onClickSearch(searchInput, searchButton, searchInputDiv) {
+
+  }//end of function
+
+
 
 })
