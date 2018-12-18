@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   let newButton;
   let searchResultDiv;
+  let userInfoDiv;
   // console.log('hello');
 
   let body = document.querySelector('body')
@@ -19,9 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function appendListOfUsers(parsed) {
-    // let usersDivBackground = document.createElement('div');
-    // usersDivBackground.classList.add('usersDivBackground')
-    // body.appendChild(usersDivBackground);
 
     let usersDiv = document.createElement('div');
     usersDiv.classList.add('usersDiv')
@@ -72,30 +70,58 @@ document.addEventListener('DOMContentLoaded', () => {
         if (display === user.name.toLowerCase()) {
           display = user.name.toLowerCase();
 
-          console.log(true, user.name, searchInput.value);
-
           searchResultDiv = document.createElement('div');
           searchResultDiv.classList.add('searchResultDiv')
           searchResultDiv.innerText = `${user.name} is one of our users!`
+
+          matchingUser(parsed, searchInput, searchButton, searchInputDiv, display, searchResultDiv)
+
+          console.log(true, user.name, searchInput.value, parsed);
         }
 
-        // } else {
-        //   console.log("Not a user",user.name, searchInput.value);
+        else {
+          // console.log("Not a user",user.name, searchInput.value);
+        }
+
       })
-      console.log(display);
+      // console.log(display);
       searchInputDiv.appendChild(searchResultDiv);
 
       // if (searchResultDiv.innerText === '') {
-      //   let searchResultDiv.innerText = `${display} is not a user.`
+      //   searchResultDiv.innerText = `${searchInput.value} is not a user.`
       // }
 
     })
 
   }//end of function
 
+//=============================
+  function matchingUser (parsed, searchInput, searchButton, searchInputDiv, display, searchResultDiv) {
+    console.log('hello', searchInput.value);
 
 
+    let userInfo = searchInput.value.toLowerCase();
 
+    parsed.listOfUsers.forEach(user => {
+      userInfo = `\n {\n  id: ${user.id}, \n  name:  ${user.name}, \n  age: ${user.age} \n}`;
+
+      console.log("mine",userInfo);
+
+      if (user.name.toLowerCase() === searchInput.value.toLowerCase()) {
+
+        console.log('oka', userInfo);
+
+        userInfoDiv = document.createElement('div');
+        userInfoDiv.classList.add('userInfoDiv');
+        userInfoDiv.innerText = userInfo;
+        searchResultDiv.appendChild(userInfoDiv);
+      }
+    })
+
+    // console.log('here',userInfo);
+  }
+
+//=============================
 
   function onClickSearch(searchInput, searchButton, searchInputDiv) {
 
