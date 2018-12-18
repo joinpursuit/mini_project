@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   let newButton;
+  let searchResultDiv;
   // console.log('hello');
 
   let body = document.querySelector('body')
@@ -70,12 +71,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // display = user.name.toLowerCase();
         if (display === user.name.toLowerCase()) {
           display = user.name.toLowerCase();
+
           console.log(true, user.name, searchInput.value);
+
+          searchResultDiv = document.createElement('div');
+          searchResultDiv.classList.add('searchResultDiv')
+          searchResultDiv.innerText = `${user.name} is one of our users!`
+        }
+
         // } else {
         //   console.log("Not a user",user.name, searchInput.value);
-        }
       })
       console.log(display);
+      searchInputDiv.appendChild(searchResultDiv);
+
+      // if (searchResultDiv.innerText === '') {
+      //   let searchResultDiv.innerText = `${display} is not a user.`
+      // }
 
     })
 
