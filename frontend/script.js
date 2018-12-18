@@ -64,23 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function findUserBySearchInput(parsed, searchInput, searchButton, searchInputDiv) {
     searchButton.addEventListener('click', () => {
-    let display;
-      parsed.listOfUsers.find(user => {
-        display = user.name.toLowerCase();
-        if (display === searchInput.value.toLowerCase()) {
-          console.log(true);
-        } else {
-          console.log(user.name, searchInput.value);
-        }
+      let display = searchInput.value.toLowerCase();
 
-      // ) {
-      //     display = searchInput.value + user.name + searchInput.value
-      //   } else {
-      //     display = searchInput.value + user.name
-      //   }
-        // console.log(user.name);
+      parsed.listOfUsers.forEach(user => {
+        // display = user.name.toLowerCase();
+        if (display === user.name.toLowerCase()) {
+          display = user.name.toLowerCase();
+          console.log(true, user.name, searchInput.value);
+        // } else {
+        //   console.log("Not a user",user.name, searchInput.value);
+        }
       })
-        // console.log(display);
+      console.log(display);
 
     })
 
